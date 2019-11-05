@@ -42,7 +42,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 
     // ViewModel and LiveData
-    def lifecycle_version = "2.0.0"
+    def lifecycle_version = "2.1.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
     // Glide

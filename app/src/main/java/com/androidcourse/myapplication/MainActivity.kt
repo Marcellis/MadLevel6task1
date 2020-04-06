@@ -3,6 +3,7 @@ package com.androidcourse.myapplication
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         viewModel.colorItems.observe(this, Observer {
             colors.clear()
             colors.addAll(it)

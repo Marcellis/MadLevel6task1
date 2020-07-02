@@ -1,4 +1,4 @@
-package com.androidcourse.myapplication
+package nl.hva.level6task1.model
 
 data class ColorItem(
     var hex: String,

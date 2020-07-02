@@ -1,4 +1,6 @@
-package com.androidcourse.myapplication
+package nl.hva.level6task1.repository
+
+import nl.hva.level6task1.model.ColorItem
 
 class ColorRepository {
     fun getColorItems(): List<ColorItem> {

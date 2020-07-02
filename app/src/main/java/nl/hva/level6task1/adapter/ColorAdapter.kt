@@ -1,4 +1,4 @@
-package com.androidcourse.myapplication
+package nl.hva.level6task1.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_color.view.*
+import nl.hva.level6task1.model.ColorItem
+import nl.hva.level6task1.R
 
 class ColorAdapter(private val colors: List<ColorItem>, private val onClick: (ColorItem) -> Unit) :
     RecyclerView.Adapter<ColorAdapter.ViewHolder>() {

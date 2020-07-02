@@ -21,10 +21,7 @@ import nl.hva.level6task1.vm.ColorViewModel
  */
 class ColorFragment : Fragment() {
     private val colors = arrayListOf<ColorItem>()
-    private val colorAdapter =
-        ColorAdapter(colors) { colorItem ->
-            onColorClick(colorItem)
-        }
+    private lateinit var colorAdapter: ColorAdapter
     private val viewModel: ColorViewModel by viewModels()
 
     override fun onCreateView(
@@ -38,12 +35,11 @@ class ColorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViews()
-        observeColors()
-    }
-    private fun initViews() {
+        colorAdapter = ColorAdapter(colors, ::onColorClick)
         rvColors.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         rvColors.adapter = colorAdapter
+
+        observeColors()
     }
 
     private fun observeColors() {

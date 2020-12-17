@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.item_color.view.*
 import nl.hva.level6task1.model.ColorItem
 import nl.hva.level6task1.R
+import nl.hva.level6task1.databinding.ItemColorBinding
 
 class ColorAdapter(private val colors: List<ColorItem>, private val onClick: (ColorItem) -> Unit) :
     RecyclerView.Adapter<ColorAdapter.ViewHolder>() {
@@ -32,8 +32,10 @@ class ColorAdapter(private val colors: List<ColorItem>, private val onClick: (Co
             itemView.setOnClickListener { onClick(colors[adapterPosition]) }
         }
 
+        private val binding = ItemColorBinding.bind(itemView)
+
         fun bind(colorItem: ColorItem) {
-            Glide.with(context).load(colorItem.getImageUrl()).into(itemView.ivColor)
+            Glide.with(context).load(colorItem.getImageUrl()).into(binding.ivColor)
         }
     }
 

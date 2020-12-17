@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import nl.hva.level6task1.model.ColorItem
 import nl.hva.level6task1.repository.ColorRepository
 
-class ColorViewModel : ViewModel(){
+class ColorViewModel : ViewModel() {
     private val colorRepository = ColorRepository()
 
     //use encapsulation to expose as LiveData

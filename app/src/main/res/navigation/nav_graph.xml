@@ -9,6 +9,5 @@
         android:id="@+id/RemindersFragment"
         android:name="nl.hva.level6task1.ui.ColorFragment"
         android:label="Reminders Fragment"
-        tools:layout="@layout/fragment_trivia">
-    </fragment>
+        tools:layout="@layout/fragment_trivia" />
 </navigation>

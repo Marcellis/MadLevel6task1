@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_trivia.*
 import nl.hva.level6task1.adapter.ColorAdapter
 import nl.hva.level6task1.model.ColorItem
-import nl.hva.level6task1.R
+import nl.hva.level6task1.databinding.FragmentTriviaBinding
 import nl.hva.level6task1.vm.ColorViewModel
 
 /**
@@ -23,27 +21,31 @@ class ColorFragment : Fragment() {
     private val colors = arrayListOf<ColorItem>()
     private lateinit var colorAdapter: ColorAdapter
     private val viewModel: ColorViewModel by viewModels()
+    private var _binding: FragmentTriviaBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trivia, container, false)
+    ): View {
+        _binding = FragmentTriviaBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         colorAdapter = ColorAdapter(colors, ::onColorClick)
-        rvColors.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        rvColors.adapter = colorAdapter
+        binding.rvColors.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        binding.rvColors.adapter = colorAdapter
 
         observeColors()
     }
 
     private fun observeColors() {
-        viewModel.colorItems.observe(viewLifecycleOwner, Observer {
+        viewModel.colorItems.observe(viewLifecycleOwner, {
             colors.clear()
             colors.addAll(it)
             colorAdapter.notifyDataSetChanged()
@@ -51,6 +53,7 @@ class ColorFragment : Fragment() {
     }
 
     private fun onColorClick(colorItem: ColorItem) {
-        Snackbar.make(rvColors, "This color is: ${colorItem.name}", Snackbar.LENGTH_LONG).show()
+        Snackbar.make(binding.rvColors, "This color is: ${colorItem.name}", Snackbar.LENGTH_LONG)
+            .show()
     }
 }
